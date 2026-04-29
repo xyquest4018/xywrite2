@@ -119,3 +119,53 @@ Operations (file offsets → DEBUG addresses at CS:0100):
 - [ ] Track progress per module
 - [ ] Maintain changelog of refactors
 - [ ] Set milestones for incremental cleanup
+
+## Bugs & Limitations
+- [ ] Identify and document all existing bugs
+- [ ] Reproduce bugs consistently with test cases
+- [ ] Categorize bugs (critical, major, minor)
+- [ ] Identify architectural or design limitations
+- [ ] Document constraints imposed by legacy DOS environment
+- [ ] Fix confirmed bugs systematically
+- [ ] Refactor or redesign areas causing major limitations
+
+## Feature Planning
+- [ ] Identify missing or desirable features for XYWrite2
+- [ ] Prioritize features (core vs optional)
+- [ ] Ensure new features align with lightweight philosophy
+- [ ] Avoid feature bloat—define strict inclusion criteria
+- [ ] Create a roadmap for feature implementation
+
+## Toolchain & Assembly Accuracy
+- [ ] Identify the original assembler used (if possible) for XYWrite sources
+- [ ] Evaluate modern compatible assemblers (MASM, TASM, NASM, FASM)
+- [ ] Select the assembler that produces the most accurate binary output
+- [ ] Identify and configure a compatible linker for the chosen assembler
+- [ ] Ensure the build toolchain replicates original binary behavior as closely as possible
+
+- [ ] Audit all `db`-encoded instruction sequences
+  - [ ] Example: `db 81h, 0FFh, 6, 0` → replace with `cmp di, 6`
+  - [ ] Example:
+        - `db 32h, 0E4h` → `xor ah, ah`
+        - `db 8Bh, 0C8h` → `mov cx, ax`
+        - `db 36h, 29h, 0Eh, 3Ah, 37h` → `sub word ptr ss:[0x373a], cx`
+        - `db 7Eh, 2` → `jle <label>`
+        - `db 0F3h, 0A4h` → `rep movsb`
+        - `db 8Bh, 0F3h` → `mov si, bx`
+
+- [ ] Replace raw opcode (`db`) sequences with proper assembly mnemonics wherever possible
+- [ ] Identify why raw opcodes were originally used:
+  - [ ] Assembler limitations
+  - [ ] Optimization tricks
+  - [ ] Self-modifying code
+  - [ ] Macro/workaround behavior
+
+- [ ] Validate that rewritten instructions produce identical machine code
+- [ ] Use disassembly tools to verify correctness of transformations
+- [ ] Preserve behavior in edge cases (flags, segment overrides, etc.)
+
+- [ ] Document any instructions that must remain as raw opcodes and explain why
+- [ ] Establish guidelines for when `db` usage is acceptable vs prohibited
+
+- [ ] Create automated or semi-automated process for opcode-to-mnemonic conversion (if feasible)
+- [ ] Ensure final codebase is readable, maintainable, and assembler-friendly
