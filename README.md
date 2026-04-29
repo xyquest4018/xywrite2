@@ -74,3 +74,48 @@ Operations (file offsets → DEBUG addresses at CS:0100):
 **Checksum algorithm:** The original linker uses ones-complement: `checksum = ~(sum of all 16-bit words with checksum=0)`. Verified: `~0xDC65 = 0x239A`.
 
 **Build batch integration:** BUILD31_305.BAT renames EDITOR2.EXE → EDITOR2.BIN, runs `DEBUG EDITOR2.BIN < FIXHDR.SCR`, then renames back.
+
+# XYWrite2 – Refactor & Modernization TODO
+
+## Code Documentation
+- [ ] Comment all assembly routines (purpose, inputs, outputs, side effects)
+- [ ] Add file-level headers describing each module
+- [ ] Document calling conventions used across routines
+- [ ] Explain any non-obvious optimizations or low-level tricks
+
+## Code Organization
+- [ ] Split large assembly files into smaller, logical modules
+- [ ] Group related subroutines into dedicated files (e.g., text handling, I/O, UI)
+- [ ] Standardize file naming conventions
+- [ ] Ensure each file has a clear, single responsibility
+
+## Labels & Naming
+- [ ] Identify all ambiguous or auto-generated labels
+- [ ] Rename labels to meaningful, descriptive names
+- [ ] Establish naming conventions for:
+  - [ ] Functions
+  - [ ] Local labels
+  - [ ] Global labels
+  - [ ] Constants and macros
+
+## Build System
+- [ ] Organize build scripts for modular assembly files
+- [ ] Ensure reproducible builds
+- [ ] Add debug vs release build configurations
+- [ ] Document build steps clearly
+
+## Code Cleanup
+
+## Reverse Engineering / Understanding
+- [ ] Map out high-level architecture of the original codebase
+- [ ] Identify core subsystems (editor, rendering, input, file I/O)
+- [ ] Document data structures and memory layout
+- [ ] Trace key execution paths (startup, editing loop, save/load)
+
+## Testing & Validation
+- [ ] Verify behavior matches original XYWrite functionality
+
+## Project Management
+- [ ] Track progress per module
+- [ ] Maintain changelog of refactors
+- [ ] Set milestones for incremental cleanup
