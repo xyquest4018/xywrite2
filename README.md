@@ -1,4 +1,4 @@
-## ✅ PROJECT COMPLETE
+## XyWrite II Plus v1.10 PROJECT README
 
 **XyWrite II Plus v1.10 — EDITOR2.EXE (79,904 bytes)**
 **Binary-exact reconstruction achieved.**
